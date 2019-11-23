@@ -20,7 +20,7 @@ class UI {
     const value = this.budgetInput.value;
     if(value==='' || value <0){
       this.budgetFeedback.classList.add('showItem');
-      this.budgetFeedback.innerHTML=`<p>vallue cannot be empty or negative</p>`;
+      this.budgetFeedback.innerHTML=`<p>Value cannot be empty or negative</p>`;
       const self= this;
       console.log(this);
 
@@ -38,7 +38,18 @@ class UI {
   }
   //show balance
   showBalance() {
-    console.log(`Show me the money!`);
+    const expense = this.totalExpense();
+    const total = parseInt(this.budgetAmount.textContent) - expense;
+    this.balanceAmount.textContent = total;
+    if(total < 0){
+      this.balance.classList.remove('showGreen', 'showBlack');
+      this.balance.classList.add('showRed');
+    }
+  }
+  //total expense
+  totalExpense(){
+    let total = 500;
+    return total;
   }
 }
 
