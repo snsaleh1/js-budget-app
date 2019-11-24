@@ -21,7 +21,7 @@ class UI {
     if(value==='' || value <0){
       this.budgetFeedback.classList.add('showItem');
       this.budgetFeedback.innerHTML=`<p>Value cannot be empty or negative</p>`;
-      const self= this;
+      const self = this;
       console.log(this);
 
       setTimeout(function(){
@@ -79,7 +79,7 @@ submitExpenseForm(){
     this.itemID++;
     this.itemList.push(expense);
     this.addExpense(expense);
-    //show balance
+    this.showBalance();
   }
 }
 //add expense
@@ -101,41 +101,46 @@ addExpense(expense){
     <i class="fas fa-trash"></i>
    </a>
   </div>
- </div>`;
+ </div>
+ `;
  this.expenseList.appendChild(div);
 }
 
 
   //total expense
   totalExpense(){
-    let total = 500;
+    let total = 0;
+    if(this.itemList.length > 0){
+      console.log(itemList);
+    }
+    this.expenseAmount.textContent = total;
     return total;
   }
 }
 
 function eventListeners(){
-  const budgetForm = document.getElementById('budget-form');
-  const expenseForm = document.getElementById('expense-form');
-  const expenseList = document.getElementById('expense-list');
+  const budgetForm = document.getElementById("budget-form");
+  const expenseForm = document.getElementById("expense-form");
+  const expenseList = document.getElementById("expense-list");
 
 
   //new instance of the UI Class
   const ui = new UI()
 
   // budget form submit
-  budgetForm.addEventListener('submit', function(event){
+  budgetForm.addEventListener("submit", function(event){
     event.preventDefault();
     ui.submitBudgetForm();
   })
   // expense form submit
-  expenseForm.addEventListener('submit', function(event){
+  expenseForm.addEventListener("submit", function(event){
     event.preventDefault();
-    ui.submitExpense
+    ui.submitExpenseForm();
   })
   // budget form submit
-  expenseList.addEventListener('submit', function(){})
+  expenseList.addEventListener("submit", function(){})
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener("DOMContentLoaded", function(){
   eventListeners();
 })
