@@ -141,7 +141,16 @@ addExpense(expense){
   }
   //delete expense
   deleteExpense(element){
-
+    let id = parseInt(element.dataset.id);
+    let parent = element.parentElement.parentElement.parentElement;
+    //remove from dom
+    this.expenseList.removeChild(parent);
+    //remove from the list
+    let tempList = this.itemList.filter(function(item){
+      return item.id !==id;
+    })
+    this.itemList = tempList;
+    this.showBalance();
   }
 }
 
